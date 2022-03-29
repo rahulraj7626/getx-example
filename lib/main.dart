@@ -19,11 +19,14 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       getPages: [
+        //define  routes
+        //initialize all pages here with parameter route_name , classname , dependency class if availabe
         GetPage(
             name: "/home",
             page: () => const ListingScreen(),
             binding: HomeBinding()),
       ],
+      //inital route that means first page when app open
       initialRoute: "/home",
     );
   }

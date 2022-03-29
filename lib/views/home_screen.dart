@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:getx_example/controllers/home_controller.dart';
 
+//main page of this app
 class ListingScreen extends StatefulWidget {
   const ListingScreen({Key? key}) : super(key: key);
 
@@ -10,11 +11,13 @@ class ListingScreen extends StatefulWidget {
 }
 
 class _ListingScreenState extends State<ListingScreen> {
-  TextEditingController controller = TextEditingController();
-  final homeController = Get.find<HomeController>();
+  TextEditingController controller =
+      TextEditingController(); //define textcontroller
+  final homeController =
+      Get.find<HomeController>(); //create object for homecontroller class
   void valfn() {
-    homeController.addList(controller.text);
-    controller.clear();
+    homeController.addList(controller.text); //add item to list method
+    controller.clear(); //clearing existing value of controller
   }
 
   @override
@@ -28,6 +31,7 @@ class _ListingScreenState extends State<ListingScreen> {
           padding: const EdgeInsets.all(15),
           margin: const EdgeInsets.all(15),
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            //header section
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: Text("Getx - Example\nAdd , Remove from list",
@@ -37,13 +41,15 @@ class _ListingScreenState extends State<ListingScreen> {
             const SizedBox(
               height: 40,
             ),
-            textField(),
+
+            textField(), //textfield widget method called
             const SizedBox(
               height: 20,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                //add button
                 Expanded(
                   child: GestureDetector(
                     onTap: valfn,
@@ -61,9 +67,11 @@ class _ListingScreenState extends State<ListingScreen> {
                         )),
                   ),
                 ),
+//remove button
                 Expanded(
                   child: GestureDetector(
-                    onTap: () => homeController.removeList(),
+                    onTap: () => homeController
+                        .removeList(), //remove last item from list method called
                     child: Container(
                         alignment: Alignment.center,
                         height: 48,
@@ -95,7 +103,8 @@ class _ListingScreenState extends State<ListingScreen> {
                         title: Text(homeController.list[index],
                             style: style(18, Colors.black54, FontWeight.w700)),
                         trailing: GestureDetector(
-                          onTap: () => homeController.removeListatIndex(index),
+                          onTap: () => homeController.removeListatIndex(
+                              index), //remove selected item method called
                           child: const Icon(
                             Icons.close,
                             color: Colors.red,
@@ -111,6 +120,7 @@ class _ListingScreenState extends State<ListingScreen> {
     );
   }
 
+// define textfield widget we can reuse anywhere
   Widget textField() {
     return TextFormField(
       controller: controller,
@@ -141,6 +151,7 @@ class _ListingScreenState extends State<ListingScreen> {
   }
 }
 
+//text stye method for reuse
 TextStyle style(double size, color, FontWeight weight) {
   return TextStyle(
     fontSize: size,
